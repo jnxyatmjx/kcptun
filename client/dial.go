@@ -5,9 +5,9 @@ import (
 	"encoding/binary"
 	"fmt"
 
+	kcp "github.com/jnxyatmjx/kcp-go"
+	"github.com/jnxyatmjx/kcptun/generic"
 	"github.com/pkg/errors"
-	kcp "github.com/xtaci/kcp-go/v5"
-	"github.com/xtaci/kcptun/generic"
 	"github.com/xtaci/tcpraw"
 )
 

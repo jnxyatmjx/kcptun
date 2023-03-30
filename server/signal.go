@@ -1,3 +1,4 @@
+//go:build linux || darwin || freebsd
 // +build linux darwin freebsd
 
 package main
@@ -8,7 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	kcp "github.com/xtaci/kcp-go/v5"
+	kcp "github.com/jnxyatmjx/kcp-go"
 )
 
 func init() {

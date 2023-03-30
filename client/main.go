@@ -12,10 +12,10 @@ import (
 
 	"golang.org/x/crypto/pbkdf2"
 
+	kcp "github.com/jnxyatmjx/kcp-go"
+	"github.com/jnxyatmjx/kcptun/generic"
 	"github.com/pkg/errors"
 	"github.com/urfave/cli"
-	kcp "github.com/xtaci/kcp-go/v5"
-	"github.com/xtaci/kcptun/generic"
 	"github.com/xtaci/smux"
 )
 
