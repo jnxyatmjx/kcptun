@@ -26,4 +26,3 @@ client/client
 server/server
 build/*
 .DS_Store
-vendor/*

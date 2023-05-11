@@ -8,11 +8,18 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
+    branches: [ "master" ]
+    inputs:
+      ssh:
+        description: 'ssh connection to actions'
+        required: false
+        default: 'false'
 
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
 
@@ -22,7 +29,9 @@ jobs:
         go-version: 1.18
 
     - name: Build
-      run: go build -v ./...
+      run: |
+        sh build-release.sh
+
 
     - name: Test
       run: go test -v ./...

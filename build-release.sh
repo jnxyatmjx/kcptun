@@ -43,22 +43,22 @@ for os in ${OSES[@]}; do
 done
 
 # 386
-OSES=(linux windows)
-for os in ${OSES[@]}; do
-	suffix=""
-	if [ "$os" == "windows" ]
-	then
-		suffix=".exe"
-	fi
-	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_${os}_386${suffix} github.com/jnxyatmjx/kcptun/client
-	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_${os}_386${suffix} github.com/jnxyatmjx/kcptun/server
-	if $UPX; then upx -9 client_${os}_386${suffix} server_${os}_386${suffix};fi
-	tar -zcf kcptun-${os}-386-$VERSION.tar.gz client_${os}_386${suffix} server_${os}_386${suffix}
-	$sum kcptun-${os}-386-$VERSION.tar.gz
-done
+# OSES=(linux windows)
+# for os in ${OSES[@]}; do
+# 	suffix=""
+# 	if [ "$os" == "windows" ]
+# 	then
+# 		suffix=".exe"
+# 	fi
+# 	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_${os}_386${suffix} github.com/jnxyatmjx/kcptun/client
+# 	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_${os}_386${suffix} github.com/jnxyatmjx/kcptun/server
+# 	if $UPX; then upx -9 client_${os}_386${suffix} server_${os}_386${suffix};fi
+# 	tar -zcf kcptun-${os}-386-$VERSION.tar.gz client_${os}_386${suffix} server_${os}_386${suffix}
+# 	$sum kcptun-${os}-386-$VERSION.tar.gz
+# done
 
 # ARM
-ARMS=(5 6 7)
+ARMS=(7)
 for v in ${ARMS[@]}; do
 	env CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=$v go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_arm$v  github.com/jnxyatmjx/kcptun/client
 	env CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=$v go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_arm$v  github.com/jnxyatmjx/kcptun/server
@@ -83,13 +83,13 @@ for os in ${OSES[@]}; do
 done
 
 #MIPS32LE
-env CGO_ENABLED=0 GOOS=linux GOARCH=mipsle GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_mipsle github.com/jnxyatmjx/kcptun/client
-env CGO_ENABLED=0 GOOS=linux GOARCH=mipsle GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_mipsle github.com/jnxyatmjx/kcptun/server
-env CGO_ENABLED=0 GOOS=linux GOARCH=mips GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_mips github.com/jnxyatmjx/kcptun/client
-env CGO_ENABLED=0 GOOS=linux GOARCH=mips GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_mips github.com/jnxyatmjx/kcptun/server
+#env CGO_ENABLED=0 GOOS=linux GOARCH=mipsle GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_mipsle github.com/jnxyatmjx/kcptun/client
+#env CGO_ENABLED=0 GOOS=linux GOARCH=mipsle GOMIPS=softfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_mipsle github.com/jnxyatmjx/kcptun/server
+env CGO_ENABLED=0 GOOS=linux GOARCH=mips GOMIPS=hardfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_mips_hardfloat github.com/jnxyatmjx/kcptun/client
+env CGO_ENABLED=0 GOOS=linux GOARCH=mips GOMIPS=hardfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_mips_hardfloat github.com/jnxyatmjx/kcptun/server
 
 if $UPX; then upx -9 client_linux_mips* server_linux_mips*;fi
-tar -zcf kcptun-linux-mipsle-$VERSION.tar.gz client_linux_mipsle server_linux_mipsle
-tar -zcf kcptun-linux-mips-$VERSION.tar.gz client_linux_mips server_linux_mips
-$sum kcptun-linux-mipsle-$VERSION.tar.gz
+#tar -zcf kcptun-linux-mipsle-$VERSION.tar.gz client_linux_mipsle server_linux_mipsle
+tar -zcf kcptun-linux-mips-$VERSION.tar.gz client_linux_mips_hardfloat server_linux_mips_hardfloat
+#$sum kcptun-linux-mipsle-$VERSION.tar.gz
 $sum kcptun-linux-mips-$VERSION.tar.gz
