@@ -42,6 +42,7 @@ jobs:
       id: tag
       if: steps.blddx.outputs.stat == 'succ' && (!cancelled())
       run: |
+        sudo timedatectl set-timezone Asia/Shanghai
         echo -e "release_tag=$(date +"%Y.%m.%d-%H%M%S")" >> $GITHUB_OUTPUT
         touch release.txt
         echo -e "stat=success" >> $GITHUB_OUTPUT
