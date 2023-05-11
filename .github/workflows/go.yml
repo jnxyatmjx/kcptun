@@ -34,14 +34,22 @@ jobs:
         cd $GITHUB_WORKSPACE
         ./build-release.sh
         echo "stat=succ" >> $GITHUB_OUTPUT
- 
+
+    - name: generate release tag
+      id: tag
+      if: steps.blddx.outputs.stat == 'succ' && (!cancelled())
+      run: |
+        echo -e "release_tag=$(date +"%Y.%m.%d-%H%M%S")" >> $GITHUB_OUTPUT
+        touch release.txt
+        echo -e "stat=success" >> $GITHUB_OUTPUT
+
     - name: push to release
       uses: softprops/action-gh-release@v1
-      if: steps.blddx.outputs.stat == 'succ' && !cancelled()
+      if: steps.tag.outputs.stat == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: $(date +"%Y.%m.%d-%H%M%S")
-        #body_path: release.txt
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
         files: build/*
 

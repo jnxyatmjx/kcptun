@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 BUILD_DIR=$(dirname "$0")/build
 mkdir -p $BUILD_DIR
@@ -28,7 +28,7 @@ LDFLAGS="-X main.VERSION=$VERSION -s -w"
 GCFLAGS=""
 
 # AMD64 
-OSES=(linux darwin windows freebsd)
+OSES=(linux windows)
 for os in ${OSES[@]}; do
 	suffix=""
 	if [ "$os" == "windows" ]
@@ -68,7 +68,7 @@ $sum kcptun-linux-arm$v-$VERSION.tar.gz
 done
 
 # ARM64
-OSES=(linux darwin windows)
+OSES=(linux windows)
 for os in ${OSES[@]}; do
 	suffix=""
 	if [ "$os" == "windows" ]
