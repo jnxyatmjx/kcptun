@@ -29,9 +29,19 @@ jobs:
         go-version: 1.18
 
     - name: Build
+      id: blddx
       run: |
-        sh build-release.sh
+        cd $GITHUB_WORKSPACE
+        sh ./build-release.sh
+        echo "stat=succ" >> $GITHUB_OUTPUT
+ 
+    - name: push to release
+      uses: softprops/action-gh-release@v1
+      if: steps.blddx.outputs.stat == 'succ' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: $(date +"%Y.%m.%d-%H%M%S")
+        #body_path: release.txt
+        files: build/*
 
-
-    - name: Test
-      run: go test -v ./...
