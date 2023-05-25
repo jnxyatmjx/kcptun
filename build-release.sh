@@ -42,20 +42,20 @@ for os in ${OSES[@]}; do
 	$sum kcptun-${os}-amd64-$VERSION.tar.gz
 done
 
-386
-OSES=(windows)
-for os in ${OSES[@]}; do
-	suffix=""
-	if [ "$os" == "windows" ]
-	then
-		suffix=".exe"
-	fi
-	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_${os}_386${suffix} github.com/jnxyatmjx/kcptun/client
-	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_${os}_386${suffix} github.com/jnxyatmjx/kcptun/server
-	if $UPX; then upx -9 client_${os}_386${suffix} server_${os}_386${suffix};fi
-	tar -zcf kcptun-${os}-386-$VERSION.tar.gz client_${os}_386${suffix} server_${os}_386${suffix}
-	$sum kcptun-${os}-386-$VERSION.tar.gz
-done
+#386
+# OSES=(windows)
+# for os in ${OSES[@]}; do
+# 	suffix=""
+# 	if [ "$os" == "windows" ]
+# 	then
+# 		suffix=".exe"
+# 	fi
+# 	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_${os}_386${suffix} github.com/jnxyatmjx/kcptun/client
+# 	env CGO_ENABLED=0 GOOS=$os GOARCH=386 go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_${os}_386${suffix} github.com/jnxyatmjx/kcptun/server
+# 	if $UPX; then upx -9 client_${os}_386${suffix} server_${os}_386${suffix};fi
+# 	tar -zcf kcptun-${os}-386-$VERSION.tar.gz client_${os}_386${suffix} server_${os}_386${suffix}
+# 	$sum kcptun-${os}-386-$VERSION.tar.gz
+# done
 
 # ARM
 ARMS=(7)
