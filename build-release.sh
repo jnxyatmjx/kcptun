@@ -93,3 +93,12 @@ if $UPX; then upx -9 client_linux_mips* server_linux_mips*;fi
 tar -zcf kcptun-linux-mips-$VERSION.tar.gz client_linux_mips_hardfloat server_linux_mips_hardfloat
 #$sum kcptun-linux-mipsle-$VERSION.tar.gz
 $sum kcptun-linux-mips-$VERSION.tar.gz
+
+
+#MIPS64
+env CGO_ENABLED=0 GOOS=linux GOARCH=mips64 GOMIPS=hardfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o client_linux_mips64_hardfloat github.com/jnxyatmjx/kcptun/client
+env CGO_ENABLED=0 GOOS=linux GOARCH=mips64 GOMIPS=hardfloat go build -mod=vendor -ldflags "$LDFLAGS" -gcflags "$GCFLAGS" -o server_linux_mips64_hardfloat github.com/jnxyatmjx/kcptun/server
+
+if $UPX; then upx -9 client_linux_mips64* server_linux_mips64*;fi
+tar -zcf kcptun-linux-mips64-$VERSION.tar.gz client_linux_mips64_hardfloat server_linux_mips64_hardfloat
+$sum kcptun-linux-mips64-$VERSION.tar.gz
