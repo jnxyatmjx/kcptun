@@ -134,7 +134,7 @@ func (r *leopardFF8) Encode(shards [][]byte) error {
 func (r *leopardFF8) encode(shards [][]byte) error {
 	shardSize := shardSize(shards)
 	if shardSize%64 != 0 {
-		return ErrShardSize
+		return ErrInvalidShardSize
 	}
 
 	m := ceilPow2(r.parityShards)
@@ -344,7 +344,7 @@ func (r *leopardFF8) Split(data []byte) ([][]byte, error) {
 			// Copy partial shards
 			copyFrom := data[perShard*fullShards : dataLen]
 			for i := range padding {
-				if len(copyFrom) <= 0 {
+				if len(copyFrom) == 0 {
 					break
 				}
 				copyFrom = copyFrom[copy(padding[i], copyFrom):]
@@ -369,7 +369,10 @@ func (r *leopardFF8) Split(data []byte) ([][]byte, error) {
 }
 
 func (r *leopardFF8) ReconstructSome(shards [][]byte, required []bool) error {
-	return r.ReconstructData(shards)
+	if len(required) == r.totalShards {
+		return r.reconstruct(shards, true)
+	}
+	return r.reconstruct(shards, false)
 }
 
 func (r *leopardFF8) Reconstruct(shards [][]byte) error {
@@ -442,7 +445,7 @@ func (r *leopardFF8) reconstruct(shards [][]byte, recoverAll bool) error {
 
 	shardSize := shardSize(shards)
 	if shardSize%64 != 0 {
-		return ErrShardSize
+		return ErrInvalidShardSize
 	}
 
 	// Use only if we are missing less than 1/4 parity,

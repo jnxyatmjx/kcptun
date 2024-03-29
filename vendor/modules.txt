@@ -1,4 +1,4 @@
-# github.com/coreos/go-iptables v0.6.0
+# github.com/coreos/go-iptables v0.7.0
 ## explicit; go 1.16
 github.com/coreos/go-iptables/iptables
 # github.com/cpuguy83/go-md2man/v2 v2.0.2
@@ -11,14 +11,14 @@ github.com/golang/snappy
 ## explicit; go 1.12
 github.com/google/gopacket
 github.com/google/gopacket/layers
-# github.com/jnxyatmjx/kcp-go v1.0.1 => /mnt/d/EastMoney/kcp-go
-## explicit; go 1.18
+# github.com/jnxyatmjx/kcp-go v0.0.0-20240329090509-3b5401aad3f4
+## explicit; go 1.21
 github.com/jnxyatmjx/kcp-go
-# github.com/klauspost/cpuid/v2 v2.2.4
+# github.com/klauspost/cpuid/v2 v2.2.7
 ## explicit; go 1.15
 github.com/klauspost/cpuid/v2
-# github.com/klauspost/reedsolomon v1.11.7
-## explicit; go 1.17
+# github.com/klauspost/reedsolomon v1.12.1
+## explicit; go 1.18
 github.com/klauspost/reedsolomon
 # github.com/pkg/errors v0.9.1
 ## explicit
@@ -35,7 +35,7 @@ github.com/templexxx/xorsimd
 # github.com/tjfoc/gmsm v1.4.1
 ## explicit; go 1.14
 github.com/tjfoc/gmsm/sm4
-# github.com/urfave/cli v1.22.12
+# github.com/urfave/cli v1.22.14
 ## explicit; go 1.11
 github.com/urfave/cli
 # github.com/xtaci/smux v1.5.24
@@ -44,8 +44,8 @@ github.com/xtaci/smux
 # github.com/xtaci/tcpraw v1.2.25
 ## explicit
 github.com/xtaci/tcpraw
-# golang.org/x/crypto v0.7.0
-## explicit; go 1.17
+# golang.org/x/crypto v0.21.0
+## explicit; go 1.18
 golang.org/x/crypto/blowfish
 golang.org/x/crypto/cast5
 golang.org/x/crypto/internal/alias
@@ -55,16 +55,14 @@ golang.org/x/crypto/salsa20/salsa
 golang.org/x/crypto/tea
 golang.org/x/crypto/twofish
 golang.org/x/crypto/xtea
-# golang.org/x/net v0.8.0
-## explicit; go 1.17
+# golang.org/x/net v0.22.0
+## explicit; go 1.18
 golang.org/x/net/bpf
 golang.org/x/net/internal/iana
 golang.org/x/net/internal/socket
 golang.org/x/net/ipv4
 golang.org/x/net/ipv6
-# golang.org/x/sys v0.6.0
-## explicit; go 1.17
-golang.org/x/sys/internal/unsafeheader
+# golang.org/x/sys v0.18.0
+## explicit; go 1.18
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# github.com/jnxyatmjx/kcp-go => /mnt/d/EastMoney/kcp-go
